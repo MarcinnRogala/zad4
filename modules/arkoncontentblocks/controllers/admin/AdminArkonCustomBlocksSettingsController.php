@@ -29,47 +29,6 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
     public function prepareOptions()
     {
         $this->fields_options = [
-            /* Form name */
-            'general' => [
-                /* Form label */
-                'title' => $this->module->l('Module options'),
-                'info' => 'Form info',
-                'fields' => [
-                    /* Single field name */
-                    $this->module->name . 'is_active' => [
-                        'title' => $this->module->l('Enable / Disable'),
-                        'desc' => 'Field description',
-                        'hint' => 'Field hint',
-                        'validation' => 'isBool|isUnsignedInt|isGenericName',
-                        /* Field title */
-                        'cast' => 'intval',
-                        /* Field type */
-                        'type' => 'bool|text|textLang|select|textarea|textareaLang|color',
-                        /* Field default value */
-                        'default' => '0',
-                        'identifier' => 'id_category',
-                        'list' => array(),
-                        'visibility' => 'true|false',
-                        'autoload_rte' => 'true|false',
-                        'cols' => '2',
-                        'rows' => '2',
-                        'required' => 'true|false',
-                        'ajax' => 'true|false',
-                        'size' => '255',
-                        'languages' => $array,
-                        'value' => $value
-                    ],
-                ],
-                /* Submit button */
-                'submit' => [
-                    'title' => $this->module->l('Save')
-                ],
-            ],
-        ];
-    }
-    public function prepareOptions()
-    {
-        $this->fields_options = [
             'general' => [
                 'title' => $this->module->l('Module options'),
                 'fields' => [
