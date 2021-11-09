@@ -19,17 +19,19 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
     {
         $this->context = Context::getContext();
         $this->context->controller = $this;
+
         $this->bootstrap = true;
         parent::__construct();
+
+        $this->prepareOptions();
     }
     public function installTab()
     {
-        // Create new Tab
         $tab = new Tab();
         // Set menu category
         $tab->id_parent = (int)Tab::getIdFromClassName('AdminParentThemes');
         // Prepare name value for multilingual possibility
-        $tab->name = [];
+        $tab->name = ['ArkonsoftDesign'];
         foreach (Language::getLanguages(true) as $lang) {
             // Set name for each language
             $tab->name[$lang['id_lang']] = $this->module->l('Custom blocks');
@@ -44,7 +46,7 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
         return $tab->add();
     }
 
-    public function uninstallTab()
+ public function uninstallTab()
     {
         // Get ID of tab from database
         $id_tab = (int)Tab::getIdFromClassName('AdminArkonCustomBlocksSettings');
@@ -101,45 +103,6 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
             ],
         ];
     }
-    public function __construct()
-    {
-        $this->context = Context::getContext();
-        $this->context->controller = $this;
-
-        $this->bootstrap = true;
-        parent::__construct();
-
-        // PREPARE CONFIGURATION FORM
-        $this->prepareOptions();
-    }
-    [
-        'title' => 'Form title',
-        'icon'  => 'icon-...',
-        'info' => 'Form info',
-        'fields' => [
-            'title' => 'Field title',
-            'desc' => 'Field description',
-            'hint' => 'Field hint',
-            'validation' => 'isBool|isUnsignedInt|isGenericName',
-            'cast' => 'intval',
-            'type' => 'bool|text|textLang|select|textarea|textareaLang|color',
-            'identifier' => 'id_category',
-            'list' => array(),
-            'visibility' => 'true|false',
-            'autoload_rte' => 'true|false',
-            'cols' => '2',
-            'rows' => '2',
-            'required' => 'true|false',
-            'url' => '',
-            'ajax' => 'true|false',
-            'size' => '255',
-            'languages' => $array,
-            'value' => $value,
-        ],
-        'submit' => [
-            'title' => 'Submit name'
-        ]
-    ];
     public function prepareOptions()
     {
         $this->fields_options = [

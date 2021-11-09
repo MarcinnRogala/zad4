@@ -26,6 +26,7 @@ class ArkonContentBlocks extends Module
             $this->tab = 'front_office_features';
             $this->version = '1.0.0';
             $this->author = 'Arkonsoft';
+            $this->author_uri = 'https://arkonsoft.pl/';
             $this->need_instance = 1;
             $this->bootstrap = 1;
     
