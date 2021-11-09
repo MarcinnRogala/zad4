@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NOTICE OF LICENSE
  *
@@ -46,7 +47,7 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
         return $tab->add();
     }
 
- public function uninstallTab()
+    public function uninstallTab()
     {
         // Get ID of tab from database
         $id_tab = (int)Tab::getIdFromClassName('AdminArkonCustomBlocksSettings');
@@ -61,12 +62,10 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
             Shop::setContext(Shop::CONTEXT_ALL);
         }
 
-        return (
-            parent::install()
+        return (parent::install()
             && $this->registerHook('actionFrontControllerSetMedia')
             // INSTALL TAB
-            && $this->installTab()
-         );
+            && $this->installTab());
     }
 
     public function uninstall()
@@ -82,18 +81,31 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
             'general' => [
                 /* Form label */
                 'title' => $this->module->l('Module options'),
-                /* Fields list */
+                'info' => 'Form info',
                 'fields' => [
                     /* Single field name */
                     $this->module->name . 'is_active' => [
-                        /* Field title */
                         'title' => $this->module->l('Enable / Disable'),
-                        /* Field target type */
+                        'desc' => 'Field description',
+                        'hint' => 'Field hint',
+                        'validation' => 'isBool|isUnsignedInt|isGenericName',
+                        /* Field title */
                         'cast' => 'intval',
                         /* Field type */
-                        'type' => 'bool',
+                        'type' => 'bool|text|textLang|select|textarea|textareaLang|color',
                         /* Field default value */
                         'default' => '0',
+                        'identifier' => 'id_category',
+                        'list' => array(),
+                        'visibility' => 'true|false',
+                        'autoload_rte' => 'true|false',
+                        'cols' => '2',
+                        'rows' => '2',
+                        'required' => 'true|false',
+                        'ajax' => 'true|false',
+                        'size' => '255',
+                        'languages' => $array,
+                        'value' => $value
                     ],
                 ],
                 /* Submit button */
