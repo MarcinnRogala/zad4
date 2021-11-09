@@ -49,7 +49,7 @@ class ArkonContentBlocks extends Module
         $tab->name = [];
         foreach (Language::getLanguages(true) as $lang) {
             // Set name for each language
-            $tab->name[$lang['id_lang']] = $this->module->l('Custom blocks');
+            $tab->name[$lang['id_lang']] = $this->l('Custom blocks');
         }
         // Set controller class name (without 'Controller' at end)
         $tab->class_name = 'AdminArkonCustomBlocksSettings';
