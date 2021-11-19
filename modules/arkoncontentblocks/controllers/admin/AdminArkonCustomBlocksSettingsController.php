@@ -24,6 +24,7 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
         $this->bootstrap = true;
         parent::__construct();
 
+        // PREPARE CONFIGURATION FORM
         $this->prepareOptions();
     }
     public function prepareOptions()
@@ -32,11 +33,7 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
             'general' => [
                 'title' => $this->module->l('Module options'),
                 'fields' => [
-                    $this->module->name . 'is_active' => [
-                        'title' => $this->module->l('Enable / Disable'),
-                        'type' => 'bool',
-                        'default' => '0',
-                    ],
+                   
                     $this->module->name . 'text' => [
                         'title' => $this->module->l('Text field'),
                         'type' => 'text',
@@ -83,6 +80,11 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
                         'cast' => 'intval',
                         'identifier' => 'id_category',
                         'list' => Category::getSimpleCategories($this->context->language->id)
+                    ],
+                    $this->module->name . 'is_active' => [
+                        'title' => $this->module->l('Enable / Disable'),
+                        'type' => 'bool',
+                        'default' => '0',
                     ],
                 ],
                 'submit' => [

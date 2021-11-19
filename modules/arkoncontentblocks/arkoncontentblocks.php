@@ -18,7 +18,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class ArkonContentBlocks extends Module
+class arkoncontentblocks extends Module
 {
     public function __construct()
     {
