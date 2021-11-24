@@ -24,6 +24,22 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
         $this->bootstrap = true;
         parent::__construct();
 
+        if (Tools::isSubmit('submitOptionsconfiguration')){
+          
+            Configuration::updateValue($this->module->name . 'textarea_rich', Tools::getValue($this->module->name . 'textarea_rich'), true);
+           
+            $languages = Language::getLanguages(false);
+    
+           
+            foreach ($languages as $lang)
+            {
+                
+                $about[(int)$lang['id_lang']] = Tools::getValue($this->module->name . 'textarea_lang_rich_'.(int)$lang['id_lang']);
+
+            }
+
+            Configuration::updateValue($this->module->name . 'textarea_lang_rich',$about);
+        }
         // PREPARE CONFIGURATION FORM
         $this->prepareOptions();
     }
@@ -65,7 +81,8 @@ class AdminArkonCustomBlocksSettingsController extends ModuleAdminController
                         'type' => 'textarea',
                         'cols' => 2,
                         'rows' => 2,
-                        'autoload_rte' => true
+                        'class' => 'rte',
+                        'autoload_rte' => true,
                     ],
                     $this->module->name . 'textarea_lang_rich' => [
                         'title' => $this->module->l('Textarea field lang'),

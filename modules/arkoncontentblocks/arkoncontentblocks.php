@@ -34,10 +34,11 @@ class arkoncontentblocks extends Module
 
         $this->displayName = $this->l('Custom content blocks');
         $this->description = $this->l('Module allows to add custom blocks to every front-office hook');
-
+        
         $this->confirmUninstall = $this->l('Are you sure? All data will be lost!');
 
         $this->ps_versions_compliancy = ['min' => '1.7', 'max' => _PS_VERSION_];
+
     }
     public function installTab()
     {
@@ -76,9 +77,10 @@ class arkoncontentblocks extends Module
             Shop::setContext(Shop::CONTEXT_ALL);
         }
 
-        return (parent::install()
-            && $this->registerHook('actionFrontControllerSetMedia')
-            // INSTALL TAB
+        return (parent::install()  &&
+             $this->registerHook('displayHome') &&
+             $this->registerHook('actionFrontControllerSetMedia') 
+        
             && $this->installTab());
     }
 
@@ -87,5 +89,44 @@ class arkoncontentblocks extends Module
         return (parent::uninstall()
             /// REMOVE TAB
             && $this->uninstallTab());
+    }
+
+    public function hookDisplayHome($params)
+    {
+        $this->context->smarty->assign([
+            'custom_blocks_text' => Configuration::get($this->name . 'text'),
+            'custom_blocks_color' => Configuration::get($this->name . 'color'),
+            'custom_blocks_lang' => Configuration::get($this->name . 'text_lang'),
+            'custom_blocks_area' => Configuration::get($this->name . 'textarea'),
+            'custom_blocks_area_lang' => Configuration::get($this->name . 'textarea_lang'),
+            'custom_blocks_rich' => Configuration::get($this->name . 'textarea_rich'),
+            'custom_blocks_lang_rich' => Configuration::get($this->name . 'textarea_lang_rich'),
+            'custom_blocks_select' => Configuration::get($this->name . 'select'),
+            'custom_blocks_is_active' => Configuration::get($this->name . 'is_active'),
+            'custom_blocks_Save' => Configuration::get($this->name . 'Save')
+        ]);
+
+        return $this->display(__FILE__, 'mymodule.tpl');
+    }
+
+    public function hookActionFrontControllerSetMedia()
+    {
+        $this->context->controller->registerStylesheet(
+            'mymodule-style',
+            $this->_path.'views/css/mymodule.css',
+            [
+                'media' => 'all',
+                'priority' => 1000,
+            ]
+        );
+
+        $this->context->controller->registerJavascript(
+            'mymodule-javascript',
+            $this->_path.'views/js/mymodule.js',
+            [
+                'position' => 'bottom',
+                'priority' => 1000,
+            ]
+        );
     }
 }

@@ -95,4 +95,5 @@ abstract class ModuleAdminControllerCore extends AdminController
             $templatePath,
         ];
     }
+    
 }

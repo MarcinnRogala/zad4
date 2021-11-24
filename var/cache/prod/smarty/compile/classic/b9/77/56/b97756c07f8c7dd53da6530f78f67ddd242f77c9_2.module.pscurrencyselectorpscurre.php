@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-19 13:53:14
+/* Smarty version 3.1.39, created on 2021-11-22 11:48:26
   from 'module:pscurrencyselectorpscurre' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61979e3a2757b3_74620316',
+  'unifunc' => 'content_619b757ad80d54_85436813',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61979e3a2757b3_74620316 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619b757ad80d54_85436813 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div id="_desktop_currency_selector">
   <div class="currency-selector dropdown js-dropdown">
